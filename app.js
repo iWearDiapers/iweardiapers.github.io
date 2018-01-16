@@ -11,6 +11,7 @@ class App extends React.Component {
 			<div>
 				<div className = ''/>
 				<textarea />
+				{marked('# Marked in browser\n\nRendered by **marked**.');}
 			</div>
 		);
 	}

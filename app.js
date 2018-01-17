@@ -3,30 +3,57 @@ class App extends React.Component {
     super(props);
     
     this.state = {
+    	inText: ""
 		}
 	}
 	
-	renderMarkdown(str) {
-		return marked(str);
+	
+	handleTextChange(e) {
+		this.setState(
+			{
+				inText: e.target.value
+			}
+		)
 	}
+	
 	
 	render() {
 		return (
 			<div>
-				<div className = ''/>
-				<textarea />
-				<div dangerouslySetInnerHTML={{__html: this.renderMarkdown('# Marked in browser\n\nRendered by **marked**.')}}></div>
-				<h1>THIS IS AFTER MARKDOWN</h1>
+				<UserInput
+					content = {this.state.inText}
+					controlFunc = {this.handleTextChange.bind(this)}
+				/>
+				<Review inText = {this.state.inText}/>
 			</div>
 		);
 	}
 }
 
+
+function UserInput(props) {
+  return (
+  	<textarea
+  		onChange = {props.controlFunc}
+  	>
+  	</textarea>
+  );
+}
+
+function Review(props) {
+	return (
+		<div
+			dangerouslySetInnerHTML = {{__html:
+				marked(props.inText)}}
+		/>
+	);
+}
+
 const app = (
   <App />
-);
+)
 
 ReactDOM.render(
   app,
   document.getElementById("root")
-);
+)

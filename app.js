@@ -3,7 +3,21 @@ class App extends React.Component {
     super(props);
     
     this.state = {
-    	inText: ""
+    	inText: "\
+    		\r# H1\n## H2\n ### H3\n\
+				\rAlternatively, for H1 and H2, an underline-ish style:\
+				\rAlt-H1\
+				\r======\
+				\rAlt-H2\
+				\r------\
+				\rHorizontal lines with '---'\
+				\r\
+				\r---\
+				\rEmphasis, aka italics, with *asterisks* or _underscores_.\
+				\rStrong emphasis, aka bold, with **asterisks** or __underscores__.\
+				\rCombined emphasis with **asterisks and _underscores_**.\
+				\rStrikethrough uses two tildes. ~~Scratch this.~~\
+			"
 		}
 	}
 	
@@ -24,7 +38,9 @@ class App extends React.Component {
 					content = {this.state.inText}
 					controlFunc = {this.handleTextChange.bind(this)}
 				/>
-				<Review inText = {this.state.inText}/>
+				<Review
+					inText = {this.state.inText}
+				/>
 			</div>
 		);
 	}
@@ -32,9 +48,13 @@ class App extends React.Component {
 
 
 function UserInput(props) {
+	
+
   return (
   	<textarea
+			className = "view"
   		onChange = {props.controlFunc}
+  		value = {props.content}
   	>
   	</textarea>
   );
@@ -43,6 +63,7 @@ function UserInput(props) {
 function Review(props) {
 	return (
 		<div
+			className = "view pre"
 			dangerouslySetInnerHTML = {{__html:
 				marked(props.inText)}}
 		/>

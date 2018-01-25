@@ -1,0 +1,12 @@
+body {
+  font-family: Dosis, sans-serif;
+  color: #82392d;
+}
+
+h1, h2, h3 {
+  color: #666f70;
+}
+
+h1:hover, h2:hover, h3:hover{
+  font-style: italic;
+}
